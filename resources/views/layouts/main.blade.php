@@ -377,6 +377,7 @@
           });
         </script>
         <script>
+          // Fungsi Menghapus semua kelas yang mengandung 'active'
           function removeAllActiveClass(menu_all){
             menu_all.forEach((element)=>{
                   if(element.classList.contains('active')){
