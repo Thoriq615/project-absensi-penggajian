@@ -34,7 +34,7 @@
                 <hr class="sidebar-divider my-0" />
 
                 <!-- Nav Item - Dashboard Penggajian Karyawan -->
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="{{ url('/')}}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Penggajian Karyawan</span>
@@ -50,40 +50,40 @@
                 </div>
 
                 <!-- Menu jadwal -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="{{ url('/jadwal') }}">
+                <li id="jadwal" class="nav-item">
+                    <a class="nav-link" href="{{ url('/jadwal') }}">
                         <i class="fas fa-fw fa-list"></i>
                         <span>Jadwal</span>
                     </a>
                 </li>
 
                 <!-- Menu Absen -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="{{ url('/absen') }}">
+                <li id="absen" class="nav-item">
+                    <a class="nav-link" href="{{ url('/absen') }}">
                         <i class="fas fa-fw fa-user-check"></i>
                         <span>Absen</span>
                     </a>
                 </li>
 
                 <!-- Menu Rekap Absen -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="{{ url('/rekap_absen') }}">
+                <li id="rekap_absen" class="nav-item">
+                    <a class="nav-link" href="{{ url('/rekap_absen') }}">
                         <i class="fas fa-fw fa-wrench"></i>
                         <span>Rekap Absen</span>
                     </a>
                 </li>
 
                 <!-- Menu Penggajian -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="{{ url('/penggajian') }}">
+                <li id="penggajian" class="nav-item">
+                    <a class="nav-link" href="{{ url('/penggajian') }}">
                         <i class="fas fa-fw fa-dollar-sign"></i>
                         <span>Penggajian</span>
                     </a>
                 </li>
 
                 <!-- Menu Laporan -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="{{ url('/laporan') }}">
+                <li id="laporan" class="nav-item">
+                    <a class="nav-link" href="{{ url('/laporan') }}">
                         <i class="fas fa-fw fa-newspaper"></i>
                         <span>Laporan</span>
                     </a>
@@ -340,7 +340,52 @@
         <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
 
         <!-- Page level custom scripts -->
-        <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
-        <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
+        <!-- <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
+        <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script> -->
+
+        <script>
+          window.addEventListener('DOMContentLoaded', (event) => {
+              let nav = document.getElementsByClassName('nav-item');
+
+              // Mendapatkan route belakang url
+              let route_url = window.location.pathname;
+                  route_url = route_url.replace('/', '');
+
+              // ambil nav menu sesuai dengan route_url
+              let menu = document.getElementById(`${route_url}`);
+              
+              // menambahkan kelas active sesuai route
+              menu.classList.add('active');
+              
+              // ambil semua nav
+              let menu_all = document.getElementsByClassName('nav-item');
+
+              // convert menu_all ke array
+              menu_all = Array.from(menu_all);
+
+              menu_all.forEach((element)=>{
+                // Ketika Link nav menu di klik
+                element.addEventListener('click', (e)=>{
+                  removeAllActiveClass(menu_all);
+
+                  // set active class ke link
+                  menu.classList.add('active');
+                  
+                });
+                
+              });
+          });
+        </script>
+        <script>
+          function removeAllActiveClass(menu_all){
+            menu_all.forEach((element)=>{
+                  if(element.classList.contains('active')){
+                    element.classList.remove('active');
+                  }
+              });
+            
+              return ;
+          }
+        </script>
     </body>
 </html>
