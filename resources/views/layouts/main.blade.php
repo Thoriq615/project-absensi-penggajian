@@ -378,25 +378,8 @@
                 
               });
 
-              let button_cetak = document.createElement('a');
-              button_cetak.setAttribute('href', '#');
-              button_cetak.className = "btn btn-primary btn-icon-split btn-sm";
-              button_cetak.innerText = "Cetak";
-              let dataTable_filter = document.getElementById('dataTable_filter');
-
-              console.log(dataTable_filter);
+              
           });
-
-          // add button small
-          let test = `<a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">Split Button Small</span>
-                  </a>`;
-                  
-          
-
         </script>
         <script>
           // Fungsi Menghapus semua kelas yang mengandung 'active'
