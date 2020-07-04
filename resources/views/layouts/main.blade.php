@@ -35,7 +35,7 @@
 
                 <!-- Nav Item - Dashboard Penggajian Karyawan -->
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ url('/')}}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Penggajian Karyawan</span>
                     </a>
