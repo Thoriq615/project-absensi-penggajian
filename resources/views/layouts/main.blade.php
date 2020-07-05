@@ -400,7 +400,9 @@
                                 '<i class="fas fa-print"></i>'+
                                 '</span>'+
                                 '<span class="text">Cetak</span>'+
-                            '</a>');
+                            '</a>'
+                        );
+
                         $('.div-kirim').html(
                             '<a href="#" class="btn dropdown-toggle btn-sm btn-primary btn-icon-split kirim" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
                                 '<span class="icon text-white-50">'+
@@ -414,6 +416,16 @@
                             '</div>'
                         );
 
+                        if(route_url == 'rekap_absen'){
+                            $('.div-edit').html(
+                                '<a href="#" class="btn btn-primary btn-icon-split btn-sm edit">'+
+                                    '<span class="icon text-white-50">'+
+                                    '<i class="fas fa-pen"></i>'+
+                                    '</span>'+
+                                    '<span class="text">Edit</span>'+
+                                '</a>'
+                            );
+                        }
                         var printDivCSS = new String ('<link href="{{asset("css/sb-admin-2.min.css")}}" rel="stylesheet" /><link href="{{asset("vendor/datatables/dataTables.bootstrap4.min.css")}}" rel="stylesheet">');
 
                         // Ketika tombol cetak di klik
@@ -433,30 +445,14 @@
                             
                             
                         }
-
-                        // ketika tombol email di klik
-                        let email = document.getElementById('email');
-                        email.onclick = (e)=>{
-                            console.log(e.target);
-                            
-                        }
-
-                        // ketika tombol wa di klik
-                        let whatsapp = document.getElementById('whatsapp');
-                        whatsapp.onclick = (e)=>{
-                            console.log(e.target);
-                            
-                        }
                         
                     }).DataTable( {
-                        dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'<'row'<'col-sm-12 col-md-6' <'row'<'col-sm-6 col-md-6'<'div-cetak'>><'col-sm-6 col-md-6'<'div-kirim'>>>><'col-sm-12 col-md-6'f>>>>" + "<'row'<'col-sm-12 table-print'tr>>" + "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>"
+                        dom: "<'row'<'col-sm-12 col-md-5'l><'col-sm-12 col-md-7'<'row'<'col-sm-12 col-md-6' <'row'<'col-sm-4 col-md-4'<'div-edit'>><'col-sm-4 col-md-4'<'div-cetak'>><'col-sm-4 col-md-4'<'div-kirim'>>>><'col-sm-12 col-md-6'f>>>>" + "<'row'<'col-sm-12 table-print'tr>>" + "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>"
                     });
                 }
 
                 //Menghilangkan alert success setelah mengirim email
                 let notif_alert = document.querySelector('.alert-notif');
-                
-                
                 
                 if(notif_alert != null){
                     setInterval(function () {
