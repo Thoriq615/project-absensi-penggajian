@@ -397,7 +397,7 @@
                         $('.div-kirim').html(
                             '<button class="btn dropdown-toggle btn-sm btn-primary kirim" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Kirim</button>'+
                                 '<div class="dropdown-menu dropdown-menu-right  aria-labelledby="navbarDropdown">'+
-                                '<a id="email" class="dropdown-item" href="#">Email</a>'+
+                                '<a id="email" class="dropdown-item" href="{{url('/sendEmail')}}">Email</a>'+
                                 '<a id="whatsapp" class="dropdown-item" href="#">Whatsapp</a>'+
                                 '</div>'
                         );

@@ -35,3 +35,5 @@ Route::get('/penggajian', function () {
 Route::get('/laporan', function () {
     return view('pages.laporan');
 });
+
+Route::get('/sendEmail', 'mailController@sendEmail');
