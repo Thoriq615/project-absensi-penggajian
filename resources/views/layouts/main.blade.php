@@ -10,12 +10,24 @@
         <title>Absensi & Penggajian</title>
 
         <!-- Custom fonts for this template-->
+        <link rel="icon" type="image/png" sizes="192x192" href="https://web-assets.mancity.com/dist/statics/android-icon-192x192.png">
         <link href="{{ asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
 
         <!-- Custom styles for this template-->
         <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet" />
         <link href="{{asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+        <style>
+            @media print {
+                body * {
+                    display:none;
+                }
+
+                body .printable {
+                    display:block;
+                }
+            }
+        </style>
     </head>
 
     <body id="page-top">
@@ -293,7 +305,7 @@
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Your Website 2020</span>
+                            <span>Copyright &copy; Manchester City Terbaik Sepanjang Masa</span>
                         </div>
                     </div>
                 </footer>
@@ -350,35 +362,84 @@
         <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script> -->
 
         <script>
-          window.addEventListener('DOMContentLoaded', (event) => {
-              let nav = document.getElementsByClassName('nav-item');
+            window.addEventListener('DOMContentLoaded', (event) => {
+                let nav = document.getElementsByClassName('nav-item');
 
-              // Mendapatkan route belakang url
-              let route_url = window.location.pathname;
-                  route_url = route_url.replace('/', '');
+                // Mendapatkan route belakang url
+                let route_url = window.location.pathname;
+                    route_url = route_url.replace('/', '');
 
-              // ambil nav menu sesuai dengan route_url
-              let menu = document.getElementById(`${route_url}`);
-              
-              // menambahkan kelas active sesuai route
-              menu.classList.add('active');
-              
-              // ambil semua nav
-              let menu_all = document.getElementsByClassName('nav-item');
-
-              // convert menu_all ke array
-              menu_all = Array.from(menu_all);
-
-              menu_all.forEach((element)=>{
-
-                // Ketika Link nav menu di klik
-                element.addEventListener('click', (e)=>{
-                  removeAllActiveClass(menu_all);
-                });
+                // ambil nav menu sesuai dengan route_url
+                let menu = document.getElementById(`${route_url}`);
                 
-              });
+                // menambahkan kelas active sesuai route
+                menu.classList.add('active');
+                
+                // ambil semua nav
+                let menu_all = document.getElementsByClassName('nav-item');
 
+                // convert menu_all ke array
+                menu_all = Array.from(menu_all);
+
+                menu_all.forEach((element)=>{
+
+                    // Ketika Link nav menu di klik
+                    element.addEventListener('click', (e)=>{
+                    removeAllActiveClass(menu_all);
+                    });
+                    
+                });
               
+                // Filter hanya page rekap absen dan laporan yang mempunyai fitur cetak dan kirim   
+                if(route_url == 'rekap_absen' || route_url == 'laporan'){
+                    $('#dataTable').on('init.dt',()=>{
+                        $('.div-cetak').html('<button class="btn btn-sm btn-primary cetak">Cetak</button>');
+                        $('.div-kirim').html(
+                            '<button class="btn dropdown-toggle btn-sm btn-primary kirim" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Kirim</button>'+
+                                '<div class="dropdown-menu dropdown-menu-right  aria-labelledby="navbarDropdown">'+
+                                '<a id="email" class="dropdown-item" href="#">Email</a>'+
+                                '<a id="whatsapp" class="dropdown-item" href="#">Whatsapp</a>'+
+                                '</div>'
+                        );
+
+                        var printDivCSS = new String ('<link href="{{asset("css/sb-admin-2.min.css")}}" rel="stylesheet" /><link href="{{asset("vendor/datatables/dataTables.bootstrap4.min.css")}}" rel="stylesheet">');
+
+                        // Ketika tombol cetak di klik
+                        let cetak = document.querySelector('.cetak');
+                        cetak.onclick = (e)=>{
+                            let datatable = document.querySelector('.table-print');
+                            var WinPrint = window.open('', '', 'width=900,height=650');
+                            WinPrint.document.write(printDivCSS + datatable.innerHTML);
+                            
+                            setTimeout(() => {
+                                WinPrint.document.close();
+                                WinPrint.focus();
+                                WinPrint.print();
+                                WinPrint.close();
+                            }, 1000);
+
+                            
+                            
+                        }
+
+                        // ketika tombol email di klik
+                        let email = document.getElementById('email');
+                        email.onclick = (e)=>{
+                            console.log(e.target);
+                            
+                        }
+
+                        // ketika tombol wa di klik
+                        let whatsapp = document.getElementById('whatsapp');
+                        whatsapp.onclick = (e)=>{
+                            console.log(e.target);
+                            
+                        }
+                        
+                    }).DataTable( {
+                        dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'<'row'<'col-sm-12 col-md-6' <'row'<'col-sm-6 col-md-6'<'div-cetak'>><'col-sm-6 col-md-6'<'div-kirim'>>>><'col-sm-12 col-md-6'f>>>>" + "<'row'<'col-sm-12 table-print'tr>>" + "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>"
+                    });
+                }
           });
         </script>
         <script>

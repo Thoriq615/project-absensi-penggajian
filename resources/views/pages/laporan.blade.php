@@ -13,7 +13,6 @@
                         <th>Nama</th>
                         <th>Gaji</th>
                         <th>Keterangan</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -21,27 +20,23 @@
                         <th>Nama</th>
                         <th>Gaji</th>
                         <th>Keterangan</th>
-                        <th>Action</th>
                     </tr>
                 </tfoot>
                 <tbody>
                     <tr>
                         <td>Tiger Nixon</td>
-                        <td>$320,800</td>
+                        <td>Rp 5.500.000</td>
                         <td>Mantap</td>
-                        <td></td>
                     </tr>
                     <tr>
                         <td>Garrett Winters</td>
-                        <td>$170,750</td>
+                        <td>Rp. 4.500.000</td>
                         <td>Boleh juga</td>
-                        <td></td>
                     </tr>
                     <tr>
                         <td>Ashton Cox</td>
-                        <td>$86,000</td>
+                        <td>Rp. 3.500.000</td>
                         <td>Wiw</td>
-                        <td></td>
                     </tr>
                     
                 </tbody>
