@@ -5,6 +5,11 @@
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Rekap Gaji</h6>
     </div>
+    @if (\Session::has('success'))
+        <div class="alert alert-success alert-notif">
+            {!! \Session::get('success') !!}
+        </div>
+    @endif
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

@@ -16,6 +16,7 @@
 
         <!-- Custom styles for this template-->
         <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet" />
+        <link href="{{asset('css/custom.css')}}" rel="stylesheet" />
         <link href="{{asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
         <style>
             @media print {
@@ -393,13 +394,24 @@
                 // Filter hanya page rekap absen dan laporan yang mempunyai fitur cetak dan kirim   
                 if(route_url == 'rekap_absen' || route_url == 'laporan'){
                     $('#dataTable').on('init.dt',()=>{
-                        $('.div-cetak').html('<button class="btn btn-sm btn-primary cetak">Cetak</button>');
+                        $('.div-cetak').html(
+                            '<a href="#" class="btn btn-primary btn-icon-split btn-sm cetak">'+
+                                '<span class="icon text-white-50">'+
+                                '<i class="fas fa-print"></i>'+
+                                '</span>'+
+                                '<span class="text">Cetak</span>'+
+                            '</a>');
                         $('.div-kirim').html(
-                            '<button class="btn dropdown-toggle btn-sm btn-primary kirim" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Kirim</button>'+
-                                '<div class="dropdown-menu dropdown-menu-right  aria-labelledby="navbarDropdown">'+
+                            '<a href="#" class="btn dropdown-toggle btn-sm btn-primary btn-icon-split kirim" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+                                '<span class="icon text-white-50">'+
+                                    '<i class="fas fa-envelope"></i>'+
+                                    '</span>'+
+                                '<span class="text">Kirim</span>'+
+                            '</a>'+
+                            '<div class="dropdown-menu dropdown-menu-right  aria-labelledby="navbarDropdown">'+
                                 '<a id="email" class="dropdown-item" href="{{url('/sendEmail')}}">Email</a>'+
                                 '<a id="whatsapp" class="dropdown-item" href="#">Whatsapp</a>'+
-                                '</div>'
+                            '</div>'
                         );
 
                         var printDivCSS = new String ('<link href="{{asset("css/sb-admin-2.min.css")}}" rel="stylesheet" /><link href="{{asset("vendor/datatables/dataTables.bootstrap4.min.css")}}" rel="stylesheet">');
@@ -440,6 +452,27 @@
                         dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'<'row'<'col-sm-12 col-md-6' <'row'<'col-sm-6 col-md-6'<'div-cetak'>><'col-sm-6 col-md-6'<'div-kirim'>>>><'col-sm-12 col-md-6'f>>>>" + "<'row'<'col-sm-12 table-print'tr>>" + "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>"
                     });
                 }
+
+                //Menghilangkan alert success setelah mengirim email
+                let notif = document.querySelector('.alert-notif');
+                if(notif != null){
+                    setInterval(function () {
+                        if (!notif.style.opacity) {
+                            notif.style.opacity = 1;
+                        }
+                        if (notif.style.opacity > 0) {
+                            notif.style.opacity -= 0.01;
+                        } else {
+                            clearInterval();
+                        }
+
+                        if (notif.style.opacity == 0) {
+                            notif.style.display = 'none';
+                        }
+                    }, 500);
+                }
+                
+                
           });
         </script>
         <script>

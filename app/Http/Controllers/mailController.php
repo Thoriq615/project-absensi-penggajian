@@ -15,8 +15,8 @@ class mailController extends Controller
         ];
        
         Mail::to('febrian.wr@gmail.com')->send(new MyEmail($details));
-       
-        return "Email telah dikirim";
+        // return Redirect::back()->with('msg', 'The Message');
+        return redirect()->back()->with('success', 'Email Berhasil Dikirim !!'); 
      
     }
 }
