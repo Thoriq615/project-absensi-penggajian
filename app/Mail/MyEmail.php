@@ -30,7 +30,7 @@ class MyEmail extends Mailable
      */
     public function build()
     {
-        return $this->from('c26c4e1b15-04552e@inbox.mailtrap.io')
+        return $this->from('testingemail072020@gmail.com')
         ->subject('Mail from Febrian')
         ->view('email.email');
     }

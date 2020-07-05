@@ -410,7 +410,7 @@
                             '</a>'+
                             '<div class="dropdown-menu dropdown-menu-right  aria-labelledby="navbarDropdown">'+
                                 '<a id="email" class="dropdown-item" href="{{url('/sendEmail')}}">Email</a>'+
-                                '<a id="whatsapp" class="dropdown-item" href="#">Whatsapp</a>'+
+                                '<a id="whatsapp" class="dropdown-item" href="https://api.whatsapp.com/send?phone=6281288621821&text=Teks">Whatsapp</a>'+
                             '</div>'
                         );
 
@@ -454,22 +454,25 @@
                 }
 
                 //Menghilangkan alert success setelah mengirim email
-                let notif = document.querySelector('.alert-notif');
-                if(notif != null){
+                let notif_alert = document.querySelector('.alert-notif');
+                
+                
+                
+                if(notif_alert != null){
                     setInterval(function () {
-                        if (!notif.style.opacity) {
-                            notif.style.opacity = 1;
+                        if (!notif_alert.style.opacity) {
+                            notif_alert.style.opacity = 1;
                         }
-                        if (notif.style.opacity > 0) {
-                            notif.style.opacity -= 0.01;
+                        if (notif_alert.style.opacity > 0) {
+                            notif_alert.style.opacity -= 0.01;
                         } else {
                             clearInterval();
                         }
 
-                        if (notif.style.opacity == 0) {
-                            notif.style.display = 'none';
+                        if (notif_alert.style.opacity == 0) {
+                            notif_alert.style.display = 'none';
                         }
-                    }, 500);
+                    }, 200);
                 }
                 
                 
