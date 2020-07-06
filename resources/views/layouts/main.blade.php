@@ -372,10 +372,10 @@
 
                 // ambil nav menu sesuai dengan route_url
                 let menu = document.getElementById(`${route_url}`);
-                
+
                 // menambahkan kelas active sesuai route
                 menu.classList.add('active');
-                
+
                 // ambil semua nav
                 let menu_all = document.getElementsByClassName('nav-item');
 
@@ -388,10 +388,10 @@
                     element.addEventListener('click', (e)=>{
                     removeAllActiveClass(menu_all);
                     });
-                    
+
                 });
-              
-                // Filter hanya page rekap absen dan laporan yang mempunyai fitur cetak dan kirim   
+
+                // Filter hanya page rekap absen dan laporan yang mempunyai fitur cetak dan kirim
                 if(route_url == 'rekap_absen' || route_url == 'laporan'){
                     $('#dataTable').on('init.dt',()=>{
                         $('.div-cetak').html(
@@ -434,7 +434,7 @@
                             let datatable = document.querySelector('.table-print');
                             var WinPrint = window.open('', '', 'width=900,height=650');
                             WinPrint.document.write(printDivCSS + datatable.innerHTML);
-                            
+
                             setTimeout(() => {
                                 WinPrint.document.close();
                                 WinPrint.focus();
@@ -442,10 +442,10 @@
                                 WinPrint.close();
                             }, 1000);
 
-                            
-                            
+
+
                         }
-                        
+
                     }).DataTable( {
                         dom: "<'row'<'col-sm-12 col-md-5'l><'col-sm-12 col-md-7'<'row'<'col-sm-12 col-md-6' <'row'<'col-sm-4 col-md-4'<'div-edit'>><'col-sm-4 col-md-4'<'div-cetak'>><'col-sm-4 col-md-4'<'div-kirim'>>>><'col-sm-12 col-md-6'f>>>>" + "<'row'<'col-sm-12 table-print'tr>>" + "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>"
                     });
@@ -453,7 +453,7 @@
 
                 //Menghilangkan alert success setelah mengirim email
                 let notif_alert = document.querySelector('.alert-notif');
-                
+
                 if(notif_alert != null){
                     setInterval(function () {
                         if (!notif_alert.style.opacity) {
@@ -470,8 +470,8 @@
                         }
                     }, 200);
                 }
-                
-                
+
+
           });
         </script>
         <script>
@@ -482,7 +482,7 @@
                     element.classList.remove('active');
                   }
               });
-            
+
               return ;
           }
         </script>
