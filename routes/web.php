@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/schedules', 'ScheduleController@index');
+Route::get('/absen', 'AbsenController@index');
