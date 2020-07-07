@@ -13,7 +13,7 @@
 
 /* page menu */
 Route::get('/', function () {
-    return view('pages.index');
+    return view('login.login');
 });
 
 Route::get('/jadwal', function () {
