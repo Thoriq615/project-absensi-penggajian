@@ -506,7 +506,7 @@
                     
                     e.preventDefault();
                 });
-          });
+            });
         </script>
         <script>
           // Fungsi Menghapus semua kelas yang mengandung 'active'
