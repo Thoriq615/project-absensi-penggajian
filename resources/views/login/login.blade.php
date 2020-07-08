@@ -1,3 +1,7 @@
+@if(session()->has('nama'))
+{{session()->has('nama')}}
+<script>window.location = "/jadwal";</script>
+@endif
 <!DOCTYPE html>
 <html lang="en">
 
