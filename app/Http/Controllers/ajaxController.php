@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use app\User;
+use App\User;
 use DB;
+use Session;
 
 class ajaxController extends Controller
 {
@@ -26,35 +27,16 @@ class ajaxController extends Controller
     public function register(Request $request){
 
         $data = [
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'email' => $request->email,
-            'password' => $request->password
+            'firstname'     => $request->firstname,
+            'lastname'      => $request->lastname,
+            'email'         => $request->email,
+            'password'      => $request->password,
         ];
 
-        // $data = [
-        //     'firstname' => "test",
-        //     'lastname' => "test",
-        //     'email' => "test",
-        //     'password' => "test"
-        // ];
-
-        DB::table('users')->create([
-                'firstname' => "test",
-                'lastname' => "test",
-                'email' => "test",
-                'password' => "test",
-                'created_at' => 'adf',
-                'update_at' => 'asdf'
-            ]);
-        // if($result->id != null){
-        //     session()->put('nama', $hasil->firstname);
-        //     return response()->json(['success' => 1]);
-        // }else{
-        //     return response()->json(['success' => 0]);
-        // }
-
-        return response()->json(['success' => $data]);
+        $users = User::create($data);
+        Session::put('nama', $request->firstname);
+        
+        return response()->json(['success' => 1]);
 
     }
 
