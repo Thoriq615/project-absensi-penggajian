@@ -33,29 +33,17 @@
                             <th>Jam Hadir</th>
                             <th>Jam Pulang</th>
                             <th>Jumlah Tidak Hadir</th>
+                            <th></th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>02</td>
-                            <td>08.30</td>
-                            <td>17.30</td>
-                            <td>7</td>
-                        </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>02</td>
-                            <td>08.30</td>
-                            <td>17.30</td>
-                            <td>7</td>
-                        </tr>
                         <tr>
                             <td>Ashton Cox</td>
                             <td>02</td>
                             <td>08.30</td>
                             <td>17.30</td>
                             <td>7</td>
+                            <td></td>
                         </tr>
                     </tbody>
                 </table>
