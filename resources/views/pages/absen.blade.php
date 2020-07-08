@@ -1,6 +1,11 @@
 @extends('layouts.main')
 
 @section('content')
+<div class="page-title-actions">
+    <div class="d-inline-block dropdown" style="padding-left: 94em;">
+    <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".create-absen">Create Absen</button>
+    </div>
+</div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Absen</h6>
@@ -50,6 +55,54 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade create-absen" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Create Absen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form method="post" action="{{url('post-registration')}}">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <label for="nama">Nama</label>
+                        <input type="text" class="form-control" id="inputName" name="name" placeholder="Masukkan Nama" name="nama">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Tanggal Lahir</label>
+                        <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" placeholder="Masukkan Tanggal Lahir" name="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Jam Hadir</label>
+                        <input type="time" class="form-control" name="jam_hadir" id="jam_hadir" placeholder="Masukkan Jam Hadir">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Jam Pulang</label>
+                        <input type="time" class="form-control" name="jam_pulang" id="jam_pulang" placeholder="Masukkan Jam Pulang">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Jumlah Tidak Hadir</label>
+                        <input type="password" class="form-control" name="jumlah_tidak_hadir" id="jumlah_tidak_hadir" placeholder="Masukkan Jumlah Tidak Hadir">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button  class="btn btn-primary" type="submit">Save changes</button>
+
+                    {{-- <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign Up</button> --}}
+                </div>
+                </form>
             </div>
         </div>
     </div>

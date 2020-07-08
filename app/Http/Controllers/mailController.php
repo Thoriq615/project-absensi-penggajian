@@ -13,9 +13,9 @@ class mailController extends Controller
             'title' => 'Pemberitahuan',
             'body' => 'Testing email dari smptp'
         ];
-       
-        Mail::to('febrian.wr@gmail.com')->send(new MyEmail($details));
-        return redirect()->back()->with('success', 'Email Berhasil Dikirim !!'); 
-     
+
+        Mail::to('thoriqkamal18@gmail.com')->send(new MyEmail($details));
+        return redirect()->back()->with('success', 'Email Berhasil Dikirim !!');
+
     }
 }
