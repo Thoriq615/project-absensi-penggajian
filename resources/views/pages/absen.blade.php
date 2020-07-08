@@ -3,10 +3,14 @@
 @section('content')
 <div class="page-title-actions">
     <div class="d-inline-block dropdown" style="float: right">
-    <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".create-absen">Create Absen</button>
+        <a href="#" class="btn btn-primary btn-icon-split btn-sm cetak mb-2" data-toggle="modal" data-target=".create-absen">
+            <span class="icon text-white-50">
+            <i class="fas fa-pen"></i>
+            </span>
+            <span class="text">Create Absen</span>
+        </a>
     </div>
-    <div class="clear" style="clear: both">
-    </div>
+    <div class="clear" style="clear: both"></div>
 </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
