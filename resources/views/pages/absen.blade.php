@@ -2,8 +2,10 @@
 
 @section('content')
 <div class="page-title-actions">
-    <div class="d-inline-block dropdown" style="padding-left: 94em;">
+    <div class="d-inline-block dropdown" style="float: right">
     <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".create-absen">Create Absen</button>
+    </div>
+    <div class="clear" style="clear: both">
     </div>
 </div>
     <div class="card shadow mb-4">
@@ -21,6 +23,7 @@
                             <th>Jam Hadir</th>
                             <th>Jam Pulang</th>
                             <th>Jumlah Tidak Hadir</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
