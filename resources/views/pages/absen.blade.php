@@ -17,7 +17,7 @@
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th>Nama</th>
                             <th>Tanggal hadir</th>
                             <th>Jam Hadir</th>
@@ -26,7 +26,7 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tfoot>
+                    {{-- <tfoot>
                         <tr>
                             <th>Nama</th>
                             <th>Tanggal hadir</th>
@@ -35,15 +35,16 @@
                             <th>Jumlah Tidak Hadir</th>
                             <th></th>
                         </tr>
-                    </tfoot>
+                    </tfoot> --}}
                     <tbody>
-                        <tr>
+                        <tr class="text-center">
                             <td>Ashton Cox</td>
                             <td>02</td>
                             <td>08.30</td>
                             <td>17.30</td>
                             <td>7</td>
-                            <td></td>
+                            <td><a href="" type="button" class="btn btn-warning edit-user" data-toggle="modal" data-target=".edit-user"><i class="fa fa-edit"></i></a>
+                            <a href="" type="button" class="btn btn-success edit-user" data-toggle="modal" data-target=".edit-user"><i class="fa fa-trash"></i></a></td>
                         </tr>
                     </tbody>
                 </table>
