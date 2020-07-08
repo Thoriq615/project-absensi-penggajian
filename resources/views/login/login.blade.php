@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -16,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
 
 </head>
 
@@ -35,42 +36,43 @@
             <div class="row">
               <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
               <div class="col-lg-6">
-                <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                  </div>
-                  <form class="user">
-                    <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                <form id="form_login">
+                  <div class="p-5">
+                    <div class="text-center">
+                      <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                     </div>
-                    <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                      <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Remember Me</label>
+                    <form class="user">
+                      <div class="form-group">
+                        <input type="email" class="form-control form-control-user" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      </div>
+                      <div class="form-group">
+                        <input type="password" class="form-control form-control-user" id="InputPassword" placeholder="Password">
+                      </div>
+                      <div class="form-group">
+                        <div class="custom-control custom-checkbox small">
+                          <input type="checkbox" class="custom-control-input" id="customCheck">
+                          <label class="custom-control-label" for="customCheck">Remember Me</label>
+                        </div>
+                      </div>
+                      <!-- <input type="submit" href="#" class="btn btn-primary btn-user btn-block btn-login" value="LOGIN"> -->
+                      <button type="submit" class="btn btn-primary btn-user btn-block btn-login">
+                        <img class="loader_image" src="" alt="" srcset=""><p class="text-login">Login</p></button>
+                      <hr>
+                    </form>
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="text-center">
+                          <a class="small" href="{{ url('/') }}">Forgot Password?</a>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                      <div class="text-center">
+                        <a class="small" href="{{ url('/register')}}">Create an Account!</a>
+                      </div>
                       </div>
                     </div>
-                    <a href="{{ url('/jadwal') }}" class="btn btn-primary btn-user btn-block">
-                      Login
-                    </a>
-                    <hr>
-                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                      <i class="fab fa-google fa-fw"></i> Login with Google
-                    </a>
-                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                    </a>
-                  </form>
-                  <hr>
-                  <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
                   </div>
-                  <div class="text-center">
-                    <a class="small" href="register.html">Create an Account!</a>
-                  </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
@@ -83,14 +85,63 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }} "></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
+  <script>
+    // keadaan default
+    let loader_image = document.querySelector('.loader_image');
+    let text_login = document.querySelector('.text-login');
+    text_login.style.margin = '0px';
+
+    loader_image.style.display = 'none';
+    // event ketika tombol login di klik
+    let form_login = document.getElementById('form_login');
+
+    form_login.addEventListener('submit', function(e){
+      let email = e.srcElement[0].value;
+      let password = e.srcElement[1].value;
+      console.log(`email : ${email} & pass : ${password}`);
+
+      // let loader_image = document.querySelector('.loader_image');
+      text_login.style.display = 'none';  
+      loader_image.src = "{{ asset('loader/loader.gif')}}";
+      loader_image.style.display = 'inline-block';
+
+      setTimeout(() => {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type    : 'POST',
+            url     : "{{url('/ajax_login')}}",
+            data    : {email: email, password : password},
+            // dataType: 'json',
+            success: function(data){
+                console.log(data);
+                if(data.success == 1){
+                  window.location.href="{{url('/jadwal')}}";
+                }
+                
+            },
+            error: function(){
+                console.log('error');
+                
+            }
+        });  
+      }, 2000);
+
+      e.preventDefault();
+    });
+  </script>
 
 </body>
 

@@ -1,9 +1,14 @@
+@if(!session()->has('nama'))
+{{session()->has('nama')}}
+<script>window.location = "/";</script>
+@endif
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
         <meta name="description" content="" />
         <meta name="author" content="" />
 
@@ -30,6 +35,8 @@
             }
         </style>
     </head>
+
+    
 
     <body id="page-top">
         <!-- Page Wrapper -->
@@ -267,7 +274,7 @@
                             <!-- Nav Item - User Information -->
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{session()->get('nama')}}</span>
                                     <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60" />
                                 </a>
                                 <!-- Dropdown - User Information -->
@@ -334,7 +341,7 @@
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                        <a class="btn btn-primary logout" href="#">Logout</a>
                     </div>
                 </div>
             </div>
@@ -470,8 +477,35 @@
                         }
                     }, 200);
                 }
-                
-                
+
+                // Ketika tombol logout di klik
+                let logout = document.querySelector('.logout');
+                logout.addEventListener('click', function(e){
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        type    : 'POST',
+                        url     : "{{url('/ajax_logout')}}",
+                        data    : {},
+                        // dataType: 'json',
+                        success: function(data){
+                            console.log(data);
+                            if(data.success == 1){
+                                window.location.href="{{url('/')}}";
+                            }
+                            
+                        },
+                        error: function(){
+                            console.log('error');
+                            
+                        }
+                    });  
+                    
+                    e.preventDefault();
+                });
           });
         </script>
         <script>

@@ -37,3 +37,12 @@ Route::get('/laporan', function () {
 });
 
 Route::get('/sendEmail', 'mailController@sendEmail');
+
+Route::get('/register', function(){
+    return view('login.register');
+});
+
+// Route Ajax
+Route::post('/ajax_login', 'ajaxController@login');
+Route::post('/ajax_register', 'ajaxController@register');
+Route::post('/ajax_logout', 'ajaxController@logout');
