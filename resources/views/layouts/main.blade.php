@@ -15,7 +15,7 @@
         <title>Absensi & Penggajian</title>
 
         <!-- Custom fonts for this template-->
-        <link rel="icon" type="image/png" sizes="192x192" href="https://web-assets.mancity.com/dist/statics/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="https://web-assets.manutd.com/dist/statics/android-icon-192x192.png">
         <link href="{{ asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
 
@@ -36,7 +36,7 @@
         </style>
     </head>
 
-    
+
 
     <body id="page-top">
         <!-- Page Wrapper -->
@@ -369,6 +369,50 @@
         <!-- <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
         <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script> -->
 
+
+        <script>
+            //Get data edit absen
+                $("#edit-absen").on('show.bs.modal', function(event){
+                    var button = $(event.relatedTarget)
+                    var id = button.data('id')
+                    var absen = button.data('absen')
+                    var tanggal_hadir = button.data('tanggal_hadir')
+                    var jam_hadir = button.data('jam_hadir')
+                    var jam_pulang = button.data('jam_pulang')
+                    var jumlah_tidak_hadir = button.data('jumlah_tidak_hadir')
+
+                    var modal = $(this)
+                    modal.find('.modal-body #idAbsen').val(id);
+                    modal.find('.modal-body #name2').val(absen);
+                    modal.find('.modal-body #tanggal_hadir2').val(tanggal_hadir);
+                    modal.find('.modal-body #jam_hadir2').val(jam_hadir);
+                    modal.find('.modal-body #jam_pulang2').val(jam_pulang);
+                    modal.find('.modal-body #jumlah_tidak_hadir2').val(jumlah_tidak_hadir);
+                })
+        </script>
+
+        <script>
+            //Get data edit Rekap-absen
+                $("#edit-rekap-absen").on('show.bs.modal', function(event){
+                    // console.log('ddddd');
+                    var button = $(event.relatedTarget)
+                    var id = button.data('id')
+                    var nama = button.data('nama')
+                    var jumlah_cuti = button.data('jumlah_cuti')
+                    var jumlah_tidak_hadir = button.data('jumlah_tidak_hadir')
+                    var potongan = button.data('potongan')
+                    var jumlah_potongan = button.data('jumlah_potongan')
+
+                    var modal = $(this)
+                    modal.find('.modal-body #idRekapAbsen').val(id);
+                    modal.find('.modal-body #nama').val(nama);
+                    modal.find('.modal-body #jumlah_cuti').val(jumlah_cuti);
+                    modal.find('.modal-body #jumlah_tidak_hadir').val(jumlah_tidak_hadir);
+                    modal.find('.modal-body #potongan_perhari').val(potongan);
+                    modal.find('.modal-body #jumlah_potongan').val(jumlah_potongan);
+                })
+        </script>
+
         <script>
             window.addEventListener('DOMContentLoaded', (event) => {
                 let nav = document.getElementsByClassName('nav-item');
@@ -423,16 +467,16 @@
                             '</div>'
                         );
 
-                        if(route_url == 'rekap_absen'){
-                            $('.div-edit').html(
-                                '<a href="#" class="btn btn-primary btn-icon-split btn-sm edit">'+
-                                    '<span class="icon text-white-50">'+
-                                    '<i class="fas fa-pen"></i>'+
-                                    '</span>'+
-                                    '<span class="text">Edit</span>'+
-                                '</a>'
-                            );
-                        }
+                        // if(route_url == 'rekap_absen'){
+                        //     $('.div-edit').html(
+                        //         '<a href="" class="btn btn-primary btn-icon-split btn-sm edit">'+
+                        //             '<span class="icon text-white-50">'+
+                        //             '<i class="fas fa-pen"></i>'+
+                        //             '</span>'+
+                        //             '<span class="text">Edit</span>'+
+                        //         '</a>'
+                        //     );
+                        // }
                         var printDivCSS = new String ('<link href="{{asset("css/sb-admin-2.min.css")}}" rel="stylesheet" /><link href="{{asset("vendor/datatables/dataTables.bootstrap4.min.css")}}" rel="stylesheet">');
 
                         // Ketika tombol cetak di klik
@@ -496,14 +540,14 @@
                             if(data.success == 1){
                                 window.location.href="{{url('/')}}";
                             }
-                            
+
                         },
                         error: function(){
                             console.log('error');
-                            
+
                         }
-                    });  
-                    
+                    });
+
                     e.preventDefault();
                 });
             });

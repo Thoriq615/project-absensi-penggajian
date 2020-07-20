@@ -10,11 +10,11 @@
             <table class="table table-striped table-bordered dt-responsive wrap" style="width:100%">
                 <thead>
                     <tr>
+                        <th rowspan="2" class="align-self-center">No</th>
                         <th rowspan="2" class="align-self-center">Nama</th>
-                        <th colspan="31" class="text-center">Tanggal</th>
+                        <th colspan="32" class="text-center">Tanggal</th>
                     </tr>
                     <tr>
-                        <th></th>
                         <th>1</th>
                         <th>2</th>
                         <th>3</th>
@@ -49,8 +49,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Tiger Nixon</td>
+                    @foreach ($data as $key => $jadwal)
+                    <tr class="text-center">
+                        <td>{{$key+1}}</td>
+                        <td>{{$jadwal->nama}}</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -83,74 +85,7 @@
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr>
-                        <td>Garrett Winters</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Ashton Cox</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
