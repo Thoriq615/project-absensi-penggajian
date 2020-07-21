@@ -70,6 +70,7 @@
                     Menu
                 </div>
 
+                @if(session()->get('nama') == 'kasiekbang')
                 <!-- Menu jadwal -->
                 <li id="jadwal" class="nav-item">
                     <a class="nav-link" href="{{ url('/jadwal') }}">
@@ -93,7 +94,9 @@
                         <span>Rekap Absen</span>
                     </a>
                 </li>
+                @endif
 
+                @if(session()->get('nama') == 'bendahara')
                 <!-- Menu Penggajian -->
                 <li id="penggajian" class="nav-item">
                     <a class="nav-link" href="{{ url('/penggajian') }}">
@@ -109,6 +112,7 @@
                         <span>Laporan</span>
                     </a>
                 </li>
+                @endif
 
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block" />
