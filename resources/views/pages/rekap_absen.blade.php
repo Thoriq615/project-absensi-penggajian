@@ -31,7 +31,7 @@
                         <td>{{$rekap_absen->nama}}</td>
                         <td>{{$rekap_absen->jumlah_cuti}}</td>
                         <td>{{$rekap_absen->jumlah_tidak_hadir}}</td>
-                        <td>{{$rekap_absen->potongan}}</td>
+                        <td>{{$rekap_absen->potongan_perhari}}</td>
                         <td>{{$rekap_absen->jumlah_potongan}}</td>
                         <td><a href="rekap_absen/edit/{{$rekap_absen->id}}" data-id="{{$rekap_absen->id}}" data-nama="{{$rekap_absen->nama}}" data-jumlah_cuti="{{$rekap_absen->jumlah_cuti}}" data-jumlah_tidak_hadir="{{$rekap_absen->jumlah_tidak_hadir}}" data-potongan="{{$rekap_absen->potongan}}" data-jumlah_potongan="{{$rekap_absen->jumlah_potongan}}" class="btn btn-primary btn-icon-split btn-sm edit" data-toggle="modal" data-target="#edit-rekap-absen"><span class="icon text-white-50"><i class="fas fa-pen"></i></span><span class="text">Edit</span></a>
                         </td>
@@ -69,18 +69,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="jam_hadir">Jumlah Tidak Hadir</label>
-                    <input type="number" class="form-control" name="jumlah_tidak_hadir" id="jumlah_tidak_hadir" placeholder="Masukkan Jumlah Tidak Hadir">
-                </div>
-
-                <div class="form-group">
                     <label for="password">Potongan Perhari</label>
                     <input type="amount" class="form-control" name="potongan_perhari" id="potongan_perhari" placeholder="Masukkan Potongan Perhari">
-                </div>
-
-                <div class="form-group">
-                    <label for="jam_hadir">Jumlah Potongan</label>
-                    <input type="amount" class="form-control" name="jumlah_potongan" id="jumlah_potongan" placeholder="Masukkan Jumlah Potongan">
                 </div>
 
             </div>
