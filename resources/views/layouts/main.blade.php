@@ -18,6 +18,7 @@
         <link rel="icon" type="image/png" sizes="192x192" href="https://web-assets.manutd.com/dist/statics/android-icon-192x192.png">
         <link href="{{ asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <link rel="stylesheet" href="{{asset('dist\css\datepicker.css')}}">
 
         <!-- Custom styles for this template-->
         <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet" />
@@ -347,6 +348,9 @@
             </div>
         </div>
 
+        <link type="text/css" href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link type="text/css"  href="bootstrap-datepicker/css/bootstrap-datepicker.css"  rel="stylesheet">
+        <script src="{{asset('dist\js\datepicker.js')}}"></script>
         <!-- Bootstrap core JavaScript-->
         <script src="{{ asset('vendor/jquery/jquery.min.js') }} "></script>
         <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -364,6 +368,10 @@
         <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
         <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
+
+        <script src="jquery/jquery-2.2.1.js"></script>
+        <script src="bootstrap/js/bootstrap.js"></script>
+        <script src="bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
         <!-- Page level custom scripts -->
         <!-- <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
@@ -410,6 +418,21 @@
                     modal.find('.modal-body #jumlah_tidak_hadir').val(jumlah_tidak_hadir);
                     modal.find('.modal-body #potongan_perhari').val(potongan);
                     modal.find('.modal-body #jumlah_potongan').val(jumlah_potongan);
+                })
+        </script>
+
+        <script>
+            //Get data edit jadwal
+                $("#edit-jadwal").on('show.bs.modal', function(event){
+                    var button = $(event.relatedTarget)
+                    var id = button.data('id')
+                    var nama = button.data('nama')
+                    var jadwal = button.data('jadwal')
+
+                    var modal = $(this)
+                    modal.find('.modal-body #idJadwal').val(id);
+                    modal.find('.modal-body #nama2').val(nama);
+                    modal.find('.modal-body #jadwal2').val(jadwal);
                 })
         </script>
 
@@ -496,6 +519,39 @@
 
 
                         }
+
+                    }).DataTable( {
+                        dom: "<'row'<'col-sm-12 col-md-5'l><'col-sm-12 col-md-7'<'row'<'col-sm-12 col-md-6' <'row'<'col-sm-4 col-md-4'<'div-edit'>><'col-sm-4 col-md-4'<'div-cetak'>><'col-sm-4 col-md-4'<'div-kirim'>>>><'col-sm-12 col-md-6'f>>>>" + "<'row'<'col-sm-12 table-print'tr>>" + "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>"
+                    });
+                }
+
+                // <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#importExcel">
+                if(route_url == 'absen'){
+                    $('#dataTable').on('init.dt',()=>{
+                        $('.div-cetak').html(
+                            '<a href="#" class="btn btn-primary btn-icon-split btn-sm upload" data-toggle="modal" data-target="#importExcel">'+
+                                '<span class="icon text-white-50">'+
+                                '<i class="fas fa-upload"></i>'+
+                                '</span>'+
+                                '<span class="text">Upload</span>'+
+                            '</a>'
+                        );
+                        var printDivCSS = new String ('<link href="{{asset("css/sb-admin-2.min.css")}}" rel="stylesheet" /><link href="{{asset("vendor/datatables/dataTables.bootstrap4.min.css")}}" rel="stylesheet">');
+
+                        // Ketika tombol cetak di klik
+                        // let cetak = document.querySelector('.cetak');
+                        // cetak.onclick = (e)=>{
+                        //     let datatable = document.querySelector('.table-print');
+                        //     var WinPrint = window.open('', '', 'width=900,height=650');
+                        //     WinPrint.document.write(printDivCSS + datatable.innerHTML);
+
+                        //     setTimeout(() => {
+                        //         WinPrint.document.close();
+                        //         WinPrint.focus();
+                        //         WinPrint.print();
+                        //         WinPrint.close();
+                        //     }, 1000);
+                        // }
 
                     }).DataTable( {
                         dom: "<'row'<'col-sm-12 col-md-5'l><'col-sm-12 col-md-7'<'row'<'col-sm-12 col-md-6' <'row'<'col-sm-4 col-md-4'<'div-edit'>><'col-sm-4 col-md-4'<'div-cetak'>><'col-sm-4 col-md-4'<'div-kirim'>>>><'col-sm-12 col-md-6'f>>>>" + "<'row'<'col-sm-12 table-print'tr>>" + "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>"

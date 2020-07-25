@@ -20,6 +20,10 @@ Route::get('/jadwal', function () {
     return view('pages.jadwal');
 });
 Route::get('/jadwal', 'JadwalController@index');
+Route::post('jadwal/create', 'JadwalController@create');
+Route::get('jadwal/edit/{id}', 'JadwalController@edit');
+Route::post('jadwal/update', 'JadwalController@update');
+Route::get('jadwal/delete/{id}', 'JadwalController@delete');
 
 Route::get('/absen', function () {
     return view('pages.absen');
@@ -30,6 +34,7 @@ Route::post('absen/create', 'AbsenController@create');
 Route::get('absen/edit/{id}', 'AbsenController@edit');
 Route::post('absen/update', 'AbsenController@update');
 Route::get('absen/delete/{id}', 'AbsenController@delete');
+Route::post('/absen/import_excel', 'AbsenController@import_excel');
 
 Route::get('/rekap_absen', function () {
     return view('pages.rekap_absen');
