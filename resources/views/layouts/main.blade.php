@@ -71,6 +71,7 @@
                     Menu
                 </div>
 
+                @if(session()->get('nama') == 'kasiekbang')
                 <!-- Menu jadwal -->
                 <li id="jadwal" class="nav-item">
                     <a class="nav-link" href="{{ url('/jadwal') }}">
@@ -94,7 +95,9 @@
                         <span>Rekap Absen</span>
                     </a>
                 </li>
+                @endif
 
+                @if(session()->get('nama') == 'bendahara')
                 <!-- Menu Penggajian -->
                 <li id="penggajian" class="nav-item">
                     <a class="nav-link" href="{{ url('/penggajian') }}">
@@ -110,6 +113,7 @@
                         <span>Laporan</span>
                     </a>
                 </li>
+                @endif
 
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block" />
@@ -381,8 +385,8 @@
         <script>
             //Get data edit absen
                 $("#edit-absen").on('show.bs.modal', function(event){
-                    var button = $(event.relatedTarget)
-                    var id = button.data('id')
+                    var button = $(event.relatedTarget);
+                    var id = button.data('id');
                     var absen = button.data('absen')
                     var tanggal_hadir = button.data('tanggal_hadir')
                     var jam_hadir = button.data('jam_hadir')
@@ -397,12 +401,12 @@
                     modal.find('.modal-body #jam_pulang2').val(jam_pulang);
                     modal.find('.modal-body #jumlah_tidak_hadir2').val(jumlah_tidak_hadir);
                 })
-        </script>
+                </script>
 
-        <script>
-            //Get data edit Rekap-absen
+<script>
+    //Get data edit Rekap-absen
+                
                 $("#edit-rekap-absen").on('show.bs.modal', function(event){
-                    // console.log('ddddd');
                     var button = $(event.relatedTarget)
                     var id = button.data('id')
                     var nama = button.data('nama')
