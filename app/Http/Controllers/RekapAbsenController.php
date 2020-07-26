@@ -17,7 +17,8 @@ class RekapAbsenController extends Controller
             'absens.jumlah_tidak_hadir',
             'rekap_absens.jumlah_cuti',
             'jadwals.nama',
-            'rekap_absens.potongan_perhari'
+            'rekap_absens.potongan_perhari',
+            'rekap_absens.jumlah_potongan'
         )
         ->leftjoin('rekap_absens', 'absens.id', '=', 'rekap_absens.id_absen')
         ->leftjoin('jadwals', 'absens.id_jadwals', '=', 'jadwals.id')
@@ -34,6 +35,10 @@ class RekapAbsenController extends Controller
 
     public function update(Request $request)
     {
+        $jumlah_tidak_hadir = RekapAbsen::select('jumlah_tidak_hadir')->where('id_absen', '=', $request->id)->first();
+        // dd($jumlah_tidak_hadir);
+        // dd($getData);
+
         if($request->jumlah_cuti == null){
             $jumlah_cuti = 0;
         }else{
@@ -53,6 +58,7 @@ class RekapAbsenController extends Controller
         ->update([
             'jumlah_cuti'          => $jumlah_cuti,
             'potongan_perhari'     => $potongan_perhari,
+            'jumlah_potongan'      => $potongan_perhari * $jumlah_tidak_hadir->jumlah_tidak_hadir
         ]);
         return redirect('/rekap_absen')->with('status', 'Data Berhasil Diubah');
     }
