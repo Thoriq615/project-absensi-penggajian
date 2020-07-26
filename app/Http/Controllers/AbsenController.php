@@ -29,24 +29,23 @@ class AbsenController extends Controller
 
     public function create(Request $request)
     {
-        // dd($request->all());
-        // $jadwal = DB::table('jadwals')->where('id', $request->id_jadwals)->first();
-        // // dd($jadwal);
-        // if (empty($jadwal)) {
-        //     $jadwal_id = Absen::select('jadwals.nama')
-        //                     ->join('jadwals', 'absens.id_jadwals','=','jadwals.id')
-        //                     ->where('id_jadwals', $request->id_jadwals)
-        //                     ->first();
-                            // dd($jadwal_id);
-        $data = Absen::create([
+        $data_absen = Absen::create([
             'nama'               => $request->nama,
             'tanggal_hadir'      => $request->tanggal_hadir,
             'jam_hadir'          => $request->jam_hadir,
             'jam_pulang'         => $request->jam_pulang,
             'jumlah_tidak_hadir' => $request->jumlah_tidak_hadir
         ]);
-        // dd($data);
-        // }
+
+        $data = RekapAbsen::create([
+            'id_absen' => $data_absen->id,
+            'jumlah_cuti' => 0,
+            'jumlah_tidak_hadir' => $data_absen->jumlah_tidak_hadir,
+            'potongan_perhari' => 0,
+            'jumlah_potongan' => 0,
+        ]);
+
+
         return redirect('/absen')->with('status', 'Data Berhasil Ditambahkan');
     }
 
