@@ -114,7 +114,7 @@
       console.log(`email : ${email} & pass : ${password}`);
 
       // let loader_image = document.querySelector('.loader_image');
-      text_login.style.display = 'none';  
+      text_login.style.display = 'none';
       loader_image.src = "{{ asset('loader/loader.gif')}}";
       loader_image.style.display = 'inline-block';
 
@@ -140,13 +140,13 @@
                       window.location.href="{{url('/jadwal')}}";
                     }
                 }
-                
+
             },
             error: function(){
                 console.log('error');
-                
+
             }
-        });  
+        });
       }, 2000);
 
       e.preventDefault();

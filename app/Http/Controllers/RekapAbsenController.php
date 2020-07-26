@@ -13,12 +13,15 @@ class RekapAbsenController extends Controller
     {
         $data = Absen::select(
             'absens.id',
-            'absens.id_pegawai',
+            'absens.id_jadwals',
             'absens.jumlah_tidak_hadir',
             'rekap_absens.jumlah_cuti',
+            'jadwals.nama',
             'rekap_absens.potongan_perhari'
         )
-        ->leftjoin('rekap_absens', 'absens.id', '=', 'rekap_absens.id_absen')->get();
+        ->leftjoin('rekap_absens', 'absens.id', '=', 'rekap_absens.id_absen')
+        ->leftjoin('jadwals', 'absens.id_jadwals', '=', 'jadwals.id')
+        ->get();
 
         return view('pages.rekap_absen', compact('data'));
     }
