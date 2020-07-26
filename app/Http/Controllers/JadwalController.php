@@ -18,7 +18,8 @@ class JadwalController extends Controller
     {
         $data = Jadwal::create([
             'nama'               => $request->nama,
-            'jadwal'             => $request->jadwal
+            'jadwal'             => $request->jadwal,
+            'Gaji'               => $request->gaji
         ]);
         return redirect('/jadwal')->with('status', 'Data Berhasil Ditambahkan');
     }

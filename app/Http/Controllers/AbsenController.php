@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Absen;
+use App\RekapAbsen;
 use App\Jadwal;
 use App\Imports\AbsenImport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -15,10 +16,9 @@ class AbsenController extends Controller
 {
     public function index()
     {
-        // $data = Absen::select('absens.id','tanggal_hadir','jam_hadir','jam_pulang','jumlah_tidak_hadir','id_jadwals','jadwals.nama')
-        // ->join('jadwals','absens.id_jadwals', '=','jadwals.id')
-        // ->get();
-        $data = Absen::all();
+        $data = Absen::select('absens.id','tanggal_hadir','jam_hadir','jam_pulang','jumlah_tidak_hadir','id_jadwals','jadwals.nama')
+        ->join('jadwals','absens.id_jadwals', '=','jadwals.id')
+        ->get();
         // dd($data);
 
         $jadwal = Jadwal::select('id','nama')->get();
@@ -30,7 +30,7 @@ class AbsenController extends Controller
     public function create(Request $request)
     {
         $data_absen = Absen::create([
-            'nama'               => $request->nama,
+            'id_jadwals'         => $request->nama,
             'tanggal_hadir'      => $request->tanggal_hadir,
             'jam_hadir'          => $request->jam_hadir,
             'jam_pulang'         => $request->jam_pulang,

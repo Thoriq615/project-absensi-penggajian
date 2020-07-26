@@ -103,13 +103,13 @@
                     <div class="form-group">
                         <label for="nama">Nama</label>
                         {{-- <input name="nama" class="nama-value" type="hidden"> --}}
-                    <input type="text" name="nama" class="form-control inputName" id="inputName" placeholder="Masukkan Nama" autocomplete="off">
-                    <div id="namaList"></div>
-                        {{-- <option value="">--choice--</option>
+                    {{-- <input type="text" name="nama" class="form-control inputName" id="inputName" placeholder="Masukkan Nama" autocomplete="off"> --}}
+                    <select name="nama" class="form-control inputName" id="inputName" placeholder="Masukkan Nama" autocomplete="off">
+                        <option value="">--choice--</option>
                         @foreach ($jadwal as $jd)
-                            <option value="{{ $jd->nama }}"></option>
+                            <option value="{{ $jd->id }}"> {{ $jd->nama}}</option>
                         @endforeach
-                     </select> --}}
+                     </select>
                     </div>
 
                     <div class="form-group">
@@ -136,38 +136,12 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button  class="btn btn-primary" type="submit">Save changes</button>
-
-                    {{-- <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign Up</button> --}}
                 </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-    <script type="text/javascript">
-      $('.inputName').select2({
-        placeholder: 'Cari...',
-        ajax: {
-          url: 'autocomplete/fetch/nama',
-          dataType: 'json',
-          delay: 250,
-          processResults: function (data) {
-            return {
-              results:  $.map(data, function (item) {
-                return {
-                  text: item.nama,
-                  id: item.id
-                }
-              })
-            };
-          },
-          cache: true
-        }
-      });
-
-    </script>
     <!-- Modal Edit Absen -->
     <div class="modal fade edit-absen" id="edit-absen" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">

@@ -24,6 +24,9 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                @php
+                // dd($data);
+                @endphp
                 @foreach ($data as $key => $rekap_absen)
                 <tbody>
                     <tr class="text-center">

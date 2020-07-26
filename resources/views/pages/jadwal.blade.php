@@ -136,8 +136,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="tanggal_hadir">Jadwal</label>
+                        <label for="jadwal">Jadwal</label>
                         <input type="text" class="form-control" name="jadwal" id="jadwal" placeholder="Masukkan Jadwal">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gaji">Gaji</label>
+                        <input type="text" class="form-control" name="gaji" id="gaji" placeholder="Masukkan Gaji">
                     </div>
 
                 </div>
