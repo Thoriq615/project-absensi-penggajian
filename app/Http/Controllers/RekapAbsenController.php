@@ -36,6 +36,9 @@ class RekapAbsenController extends Controller
     public function update(Request $request)
     {
         // dd($request->all());
+        $jumlah_tidak_hadir = RekapAbsen::select('jumlah_tidak_hadir')->where('id_absen', '=', $request->id)->first();
+        // dd($jumlah_tidak_hadir);
+        // dd($getData);
 
         if($request->jumlah_cuti == null){
             $jumlah_cuti = 0;

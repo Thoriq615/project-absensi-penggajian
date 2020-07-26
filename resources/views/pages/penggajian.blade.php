@@ -27,27 +27,16 @@
                     </tr>
                 </tfoot>
                 <tbody>
+                    <?php //dd($user);?>
+                    @foreach($user as $key => $value)
                     <tr>
-                        <td>Tiger Nixon</td>
-                        <td>1</td>
-                        <td>Rp 50.000</td>
-                        <td>Rp 50.000</td>
-                        <td>Rp 3.500.000</td>
+                        <td>{{$value->nama}}</td>
+                        <td>{{!empty($value->jumlah_tidak_hadir)?$value->jumlah_tidak_hadir:0}}</td>
+                        <td>{{!empty($value->potongan_perhari)?$value->potongan_perhari:0}}</td>
+                        <td>{{!empty($value->jumlah_potongan)?$value->jumlah_potongan:0}}</td>
+                        <td>Rp. {{!empty($value->gaji_net)?$value->gaji_net:0}}</td>
                     </tr>
-                    <tr>
-                        <td>Garrett Winters</td>
-                        <td>1</td>
-                        <td>Rp 80.000</td>
-                        <td>Rp 150.000</td>
-                        <td>Rp 5.500.000</td>
-                    </tr>
-                    <tr>
-                        <td>Ashton Cox</td>
-                        <td>1</td>
-                        <td>Rp 70.000</td>
-                        <td>Rp 140.000</td>
-                        <td>Rp 4.500.000</td>
-                    </tr>
+                    @endforeach
                     
                 </tbody>
             </table>
