@@ -23,22 +23,13 @@
                     </tr>
                 </tfoot>
                 <tbody>
+                    @foreach($user as $key => $value)
                     <tr>
-                        <td>Tiger Nixon</td>
-                        <td>Rp 5.500.000</td>
-                        <td>Mantap</td>
+                        <td>{{$value->nama}}</td>
+                        <td>Rp {{!empty($value->gaji_net)?$value->gaji_net:0}}</td>
+                        <td>Karyawan</td>
                     </tr>
-                    <tr>
-                        <td>Garrett Winters</td>
-                        <td>Rp. 4.500.000</td>
-                        <td>Boleh juga</td>
-                    </tr>
-                    <tr>
-                        <td>Ashton Cox</td>
-                        <td>Rp. 3.500.000</td>
-                        <td>Wiw</td>
-                    </tr>
-                    
+                    @endforeach
                 </tbody>
             </table>
         </div>

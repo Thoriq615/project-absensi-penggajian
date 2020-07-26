@@ -15,8 +15,8 @@ class AbsenImport implements ToModel
     public function model(array $row)
     {
         return new Absen([
-            'nama' => $row[1],
-            'tanggal_lahir' => $row[2],
+            'id_jadwals' => 3,
+            'tanggal_hadir' => $row[2],
             'jam_hadir' => $row[3],
             'jam_pulang' => $row[4],
             'jumlah_tidak_hadir' => $row[5],

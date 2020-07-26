@@ -46,14 +46,15 @@ Route::get('rekap_absen/edit/{id}', 'RekapAbsenController@edit');
 Route::post('rekap_absen/update', 'RekapAbsenController@update');
 Route::get('rekap_absen/delete/{id}', 'RekapAbsenController@delete');
 
-Route::get('/penggajian', function () {
-    return view('pages.penggajian');
-});
-// Route::get('/penggajian', 'PenggajianController@index');
+// Route::get('/penggajian', function () {
+//     return view('pages.penggajian');
+// });
+Route::get('/penggajian', 'PenggajianController@index');
+Route::get('/laporan', 'PenggajianController@laporan');
 
-Route::get('/laporan', function () {
-    return view('pages.laporan');
-});
+// Route::get('/laporan', function () {
+//     return view('pages.laporan');
+// });
 
 Route::get('/sendEmail', 'mailController@sendEmail');
 
