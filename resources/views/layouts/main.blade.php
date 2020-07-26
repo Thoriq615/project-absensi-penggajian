@@ -405,7 +405,7 @@
 
 <script>
     //Get data edit Rekap-absen
-                
+
                 $("#edit-rekap-absen").on('show.bs.modal', function(event){
                     var button = $(event.relatedTarget)
                     var id = button.data('id')
