@@ -132,7 +132,13 @@
             success: function(data){
                 console.log(data);
                 if(data.success == 1){
-                  window.location.href="{{url('/jadwal')}}";
+                    if(email == 'bendahara@gmail.com'){
+                      window.location.href="{{url('/penggajian')}}";
+                    }else if(email == 'kasiekbang@gmail.com'){
+                      window.location.href="{{url('/jadwal')}}";
+                    }else{
+                      window.location.href="{{url('/jadwal')}}";
+                    }
                 }
                 
             },

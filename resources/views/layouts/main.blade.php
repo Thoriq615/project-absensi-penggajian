@@ -70,7 +70,7 @@
                     Menu
                 </div>
 
-                @if(session()->get('nama') == 'kasiekbang')
+                @if(session()->get('nama') == 'kasiekbang' || session()->get('nama') == 'admin')
                 <!-- Menu jadwal -->
                 <li id="jadwal" class="nav-item">
                     <a class="nav-link" href="{{ url('/jadwal') }}">
@@ -96,7 +96,7 @@
                 </li>
                 @endif
 
-                @if(session()->get('nama') == 'bendahara')
+                @if(session()->get('nama') == 'bendahara' || session()->get('nama') == 'admin')
                 <!-- Menu Penggajian -->
                 <li id="penggajian" class="nav-item">
                     <a class="nav-link" href="{{ url('/penggajian') }}">
