@@ -17,7 +17,8 @@ class RekapAbsenController extends Controller
             'absens.jumlah_tidak_hadir',
             'rekap_absens.jumlah_cuti',
             'jadwals.nama',
-            'rekap_absens.potongan_perhari'
+            'rekap_absens.potongan_perhari',
+            'rekap_absens.jumlah_potongan'
         )
         ->leftjoin('rekap_absens', 'absens.id', '=', 'rekap_absens.id_absen')
         ->leftjoin('jadwals', 'absens.id_jadwals', '=', 'jadwals.id')
@@ -34,6 +35,8 @@ class RekapAbsenController extends Controller
 
     public function update(Request $request)
     {
+        // dd($request->all());
+
         if($request->jumlah_cuti == null){
             $jumlah_cuti = 0;
         }else{
@@ -46,13 +49,28 @@ class RekapAbsenController extends Controller
             $potongan_perhari = $request->potongan_perhari;
         }
 
-        // dd($potongan_perhari);
+        if($request->jumlah_tidak_hadir == null){
+            $jumlah_tidak_hadir = 0;
+        }else{
+            $jumlah_tidak_hadir = $request->jumlah_tidak_hadir;
+        }
+
+        $jumlah_tidak_hadir = $request->jumlah_tidak_hadir;
+        $potongan_perhari   = $request->potongan_perhari;
+
+        if($request->jumlah_potongan != null){
+            $jumlah_potongan = $jumlah_tidak_hadir * $potongan_perhari;
+        }else{
+            $jumlah_potongan = 0;
+        }
+        // dd($jumlah_potongan);
 
         $data_update = DB::table('rekap_absens')
         ->where('rekap_absens.id_absen', $request->id)
         ->update([
             'jumlah_cuti'          => $jumlah_cuti,
             'potongan_perhari'     => $potongan_perhari,
+            'jumlah_potongan'      => $jumlah_potongan
         ]);
         return redirect('/rekap_absen')->with('status', 'Data Berhasil Diubah');
     }

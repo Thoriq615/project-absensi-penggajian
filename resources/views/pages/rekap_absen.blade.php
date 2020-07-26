@@ -36,7 +36,7 @@
                         <td>{{$rekap_absen->jumlah_tidak_hadir}}</td>
                         <td>{{$rekap_absen->potongan_perhari}}</td>
                         <td>{{$rekap_absen->jumlah_potongan}}</td>
-                        <td><a href="rekap_absen/edit/{{$rekap_absen->id}}" data-id="{{$rekap_absen->id}}" data-nama="{{$rekap_absen->nama}}" data-jumlah_cuti="{{$rekap_absen->jumlah_cuti}}" data-jumlah_tidak_hadir="{{$rekap_absen->jumlah_tidak_hadir}}" data-potongan="{{$rekap_absen->potongan}}" data-jumlah_potongan="{{$rekap_absen->jumlah_potongan}}" class="btn btn-primary btn-icon-split btn-sm edit" data-toggle="modal" data-target="#edit-rekap-absen"><span class="icon text-white-50"><i class="fas fa-pen"></i></span><span class="text">Edit</span></a>
+                        <td><a href="rekap_absen/edit/{{$rekap_absen->id}}" data-id="{{$rekap_absen->id}}" data-nama="{{$rekap_absen->nama}}" data-jumlah_cuti="{{$rekap_absen->jumlah_cuti}}" data-jumlah_tidak_hadir="{{$rekap_absen->jumlah_tidak_hadir}}" data-potongan="{{$rekap_absen->potongan_perhari}}" data-jumlah_potongan="{{$rekap_absen->jumlah_potongan}}" class="btn btn-primary btn-icon-split btn-sm edit" data-toggle="modal" data-target="#edit-rekap-absen"><span class="icon text-white-50"><i class="fas fa-pen"></i></span><span class="text">Edit</span></a>
                         </td>
                     </tr>
                 @endforeach
@@ -71,9 +71,19 @@
                     <input type="number" class="form-control" name="jumlah_cuti" id="jumlah_cuti" placeholder="Masukkan Jumlah Cuti">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group JumlahTidakHadir">
+                    <label for="tanggal_hadir2">Jumlah Tidak Hadir</label>
+                    <input type="number" class="form-control" name="jumlah_tidak_hadir" id="jumlah_tidak_hadir" placeholder="Masukkan Jumlah Tidak Hadir">
+                </div>
+
+                <div class="form-group PotonganPerhari">
                     <label for="password">Potongan Perhari</label>
                     <input type="amount" class="form-control" name="potongan_perhari" id="potongan_perhari" placeholder="Masukkan Potongan Perhari">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Jumlah Potongan</label>
+                    <input type="amount" class="form-control" name="jumlah_potongan" id="jumlah_potongan" placeholder="Masukkan Jumlah Potongan" readonly>
                 </div>
 
             </div>
@@ -84,5 +94,16 @@
             </form>
         </div>
     </div>
-</div>
+{{-- </div>
+<script type = "text/javascript">
+    let jml_tdk_hadir = document.getElementById('jumlah_tidak_hadir').value;
+    let pot_perhari = document.querySelector('.PotonganPerhari');
+    console.log(pot_perhari);
+    pot_perhari = pot_perhari.replace(/[,]/g, '.');
+
+    let result = parseFloat(jml_tdk_hadir) * parseFloat(pot_perhari);
+    if(!isNaN(result)){
+        document.getElementById('jumlah_potongan').value = result.toString().replace(/[.]/g, ',');
+    }
+</script> --}}
 @endsection
