@@ -44,6 +44,7 @@ Route::get('rekap_absen/delete/{id}', 'RekapAbsenController@delete');
 Route::get('/penggajian', function () {
     return view('pages.penggajian');
 });
+// Route::get('/penggajian', 'PenggajianController@index');
 
 Route::get('/laporan', function () {
     return view('pages.laporan');
