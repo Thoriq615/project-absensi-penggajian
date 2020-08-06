@@ -34,7 +34,6 @@ Route::post('absen/create', 'AbsenController@create');
 Route::get('absen/edit/{id}', 'AbsenController@edit');
 Route::post('absen/update', 'AbsenController@update');
 Route::get('absen/delete/{id}', 'AbsenController@delete');
-Route::post('/absen/import_excel', 'AbsenController@import_excel');
 
 Route::get('/rekap_absen', function () {
     return view('pages.rekap_absen');
@@ -45,11 +44,14 @@ Route::post('rekap_absen/create', 'RekapAbsenController@create');
 Route::get('rekap_absen/edit/{id}', 'RekapAbsenController@edit');
 Route::post('rekap_absen/update', 'RekapAbsenController@update');
 Route::get('rekap_absen/delete/{id}', 'RekapAbsenController@delete');
+Route::post('/rekap_absen/import_excel', 'RekapAbsenController@import_excel');
 
 // Route::get('/penggajian', function () {
 //     return view('pages.penggajian');
 // });
 Route::get('/penggajian', 'PenggajianController@index');
+Route::get('penggajian/edit/{id}', 'PenggajianController@edit');
+Route::post('penggajian/update', 'PenggajianController@update');
 Route::get('/laporan', 'PenggajianController@laporan');
 
 // Route::get('/laporan', function () {

@@ -9,7 +9,7 @@
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th>No</th>
                         <th>Nama</th>
                         <th>Jumlah Tidak Hadir</th>
@@ -21,7 +21,7 @@
                     </tr>
                 </thead>
                 <tfoot>
-                    <tr>
+                    <tr class="text-center">
                         <th>No</th>
                         <th>Nama</th>
                         <th>Jumlah Tidak Hadir</th>
@@ -35,15 +35,15 @@
                 <tbody>
                     <?php //dd($user);?>
                     @foreach($user as $key => $value)
-                    <tr>
+                    <tr class="text-center">
                         <td>{{$key+1}}</td>
                         <td>{{$value->nama}}</td>
                         <td>{{!empty($value->jumlah_tidak_hadir)?$value->jumlah_tidak_hadir:0}}</td>
-                        <td>{{!empty($value->potongan_perhari)?$value->potongan_perhari:0}}</td>
-                        <td>{{!empty($value->jumlah_potongan)?$value->jumlah_potongan:0}}</td>
+                        <td>Rp. {{!empty($value->potongan_perhari)?$value->potongan_perhari:0}}</td>
+                        <td>Rp. {{!empty($value->jumlah_potongan)?$value->jumlah_potongan:0}}</td>
                         <td>Rp. {{!empty($value->gaji_pokok)?$value->gaji_pokok:0}}</td>
                         <td>Rp. {{!empty($value->jumlah_gaji)?$value->jumlah_gaji:0}}</td>
-                        <td><a href="penggajian/edit/{{$value->id}}" data-id="{{$value->id}}" data-nama="{{$value->nama}}" data-jumlah_tidak_hadir="{{$value->jumlah_tidak_hadir}}"   data-potongan_perhari="{{$value->potongan_perhari}}" data-jumlah_potongan="{{$value->jumlah_potongan}}" data-jumlah_gaji="{{$value->jumlah_gaji}}" class="btn btn-primary btn-icon-split btn-sm edit" data-toggle="modal" data-target="#edit-penggajian"><span class="icon text-white-50"><i class="fas fa-pen"></i></span><span class="text">Edit</span></a>
+                        <td><a href="penggajian/edit/{{$value->id}}" data-id="{{$value->id}}" data-nama="{{$value->nama}}" data-jumlah_tidak_hadir="{{$value->jumlah_tidak_hadir}}" data-potongan_perhari="{{$value->potongan_perhari}}" data-jumlah_potongan="{{$value->jumlah_potongan}}" data-gaji_pokok="{{$value->gaji_pokok}}" data-jumlah_gaji="{{$value->jumlah_gaji}}" class="btn btn-primary btn-icon-split btn-sm edit" data-toggle="modal" data-target="#edit-penggajian"><span class="icon text-white-50"><i class="fas fa-pen"></i></span><span class="text">Edit</span></a>
                         </td>
                     </tr>
                     @endforeach
@@ -85,6 +85,11 @@
                 <div class="form-group">
                     <label for="password">Jumlah Potongan</label>
                     <input type="amount" class="form-control" name="jumlah_potongan" id="jumlah_potongan" placeholder="Masukkan Jumlah Potongan">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Gaji Pokok</label>
+                    <input type="amount" class="form-control" name="gaji_pokok" id="gaji_pokok" placeholder="Masukkan Jumlah Gaji Pokok">
                 </div>
 
                 <div class="form-group">

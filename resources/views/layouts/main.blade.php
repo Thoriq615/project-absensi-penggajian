@@ -434,6 +434,7 @@
                     var jumlah_tidak_hadir = button.data('jumlah_tidak_hadir')
                     var potongan = button.data('potongan_perhari')
                     var jumlah_potongan = button.data('jumlah_potongan')
+                    var gaji_pokok = button.data('gaji_pokok')
                     var jumlah_gaji = button.data('jumlah_gaji')
 
                     var modal = $(this)
@@ -442,6 +443,7 @@
                     modal.find('.modal-body #jumlah_tidak_hadir').val(jumlah_tidak_hadir);
                     modal.find('.modal-body #potongan_perhari').val(potongan);
                     modal.find('.modal-body #jumlah_potongan').val(jumlah_potongan);
+                    modal.find('.modal-body #gaji_pokok').val(gaji_pokok);
                     modal.find('.modal-body #jumlah_gaji').val(jumlah_gaji);
                 })
                 </script>

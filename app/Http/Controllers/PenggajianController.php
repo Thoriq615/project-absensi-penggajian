@@ -17,9 +17,9 @@ class PenggajianController extends Controller
         $user = Penggajian::select(
             'penggajians.id',
             'rekap_absens.nama',
-            'rekap_absens.jumlah_tidak_hadir',
-            'rekap_absens.potongan_perhari',
-            'rekap_absens.jumlah_potongan',
+            'penggajians.jumlah_tidak_hadir',
+            'penggajians.potongan_perhari',
+            'penggajians.jumlah_potongan',
             'penggajians.jumlah_gaji',
             DB::raw('penggajians.gaji_pokok')
             )
@@ -38,14 +38,7 @@ class PenggajianController extends Controller
     public function update(Request $request)
     {
         // dd($request->all());
-        // $id_rekap_absen = RekapAbsen::select('nama')->where('id', '=', $request->nama)->first();
         $rekap_absen_id = DB::table('rekap_absens')->where('nama', '=', $request->nama)->first();
-        // dd($rekap_absen_id);
-        // $rekap_absen_id = Penggajian::select('rekap_absens.nama')
-        //                         ->join('rekap_absens','penggajians.id_rekap_absens','=','rekap_absens.id')
-        //                         ->where('nama', $request->nama)
-        //                         ->first();
-
         $data_update = DB::table('penggajians')
         ->where('penggajians.id', $request->id)
         ->update([
@@ -53,7 +46,8 @@ class PenggajianController extends Controller
             'jumlah_tidak_hadir'   => $request->jumlah_tidak_hadir,
             'potongan_perhari'     => $request->potongan_perhari,
             'jumlah_potongan'      => $request->jumlah_potongan,
-            'jumlah_gaji'          => $request->jumlah_gaji
+            'jumlah_gaji'          => $request->jumlah_gaji,
+            'gaji_pokok'           => $request->gaji_pokok
         ]);
         return redirect('/penggajian')->with('status', 'Data Berhasil Diubah');
     }
