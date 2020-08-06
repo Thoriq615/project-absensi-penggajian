@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\RekapAbsen;
 use App\Absen;
 use App\Penggajian;
+use App\Imports\RekapAbsensImport;
 use DB;
+use Excel;
 
 class RekapAbsenController extends Controller
 {
@@ -27,6 +29,21 @@ class RekapAbsenController extends Controller
         $data = RekapAbsen::all();
 
         return view('pages.rekap_absen', compact('data'));
+    }
+
+    public function storeData(Request $request)
+    {
+        //VALIDASI
+        $this->validate($request, [
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file'); //GET FILE
+            Excel::import(new RekapAbsensImport, $file); //IMPORT FILE
+            return redirect()->back()->with(['success' => 'Upload success']);
+        }
+        return redirect()->back()->with(['error' => 'Please choose file before']);
     }
 
     public function create(Request $request)

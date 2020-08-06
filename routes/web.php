@@ -45,6 +45,7 @@ Route::get('rekap_absen/edit/{id}', 'RekapAbsenController@edit');
 Route::post('rekap_absen/update', 'RekapAbsenController@update');
 Route::get('rekap_absen/delete/{id}', 'RekapAbsenController@delete');
 Route::post('/rekap_absen/import_excel', 'RekapAbsenController@import_excel');
+Route::post('/', 'RekapAbsenController@storeData');
 
 // Route::get('/penggajian', function () {
 //     return view('pages.penggajian');

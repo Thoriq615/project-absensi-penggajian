@@ -318,7 +318,7 @@
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Manchester City Terbaik Sepanjang Masa</span>
+                            <span>Copyright &copy; Absensi Penggajian</span>
                         </div>
                     </div>
                 </footer>

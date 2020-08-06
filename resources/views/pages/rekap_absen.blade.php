@@ -1,9 +1,16 @@
 @extends('layouts.main')
 
 @section('content')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bulk Import Laravel Excel</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
 <div class="page-title-actions">
     <div class="d-inline-block dropdown" style="float: right">
-        <a href="#" class="btn btn-primary btn-icon-split btn-sm" data-toggle="modal" data-target=".data-absen-rekap">
+        <a href="#" class="btn btn-primary btn-icon-split btn-sm cetak" data-toggle="modal" data-target=".data-absen-rekap">
             <span class="icon text-white-50">
             <i class="fas fa-pen"></i>
             </span>
@@ -12,6 +19,43 @@
     </div>
     <div class="clear" style="clear: both"></div>
 </div>
+<body>
+<div class="container-fluid" style="padding-left: 1px;">
+    <div class="row" style="padding-top: 30px">
+        <div class="col-md-8">
+            {{-- <div class="card" style="width: 40%"> --}}
+                {{-- <div class="card-body" style="width: 100%"> --}}
+                    <form action="{{ url('/') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+
+                        @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                        @endif
+
+                        @if (session('error'))
+                            <div class="alert alert-success">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+
+                        <div class="form-group">
+                            {{-- <label for="">File (.xls, .xlsx)</label> --}}
+                            <input type="file" class="form-control btn btn-primary btn-icon-split btn-sm cetak" name="file" style="width: 25%">
+                            <p class="text-danger">{{ $errors->first('file') }}</p>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-sm">Upload</button>
+                        </div>
+                    </form>
+                {{-- </div> --}}
+            {{-- </div> --}}
+        </div>
+        <div class="col-md-6"></div>
+    </div>
+</div>
+</body>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Rekap Absen</h6>
@@ -154,35 +198,5 @@
         </div>
     </div>
 </div>
-<!-- Import Excel -->
-<div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <form method="post" action="/rekap_absen/import_excel" enctype="multipart/form-data">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
-                </div>
-                <div class="modal-body">
-
-                    {{ csrf_field() }}
-
-                    <label>Pilih file excel</label>
-                    <div class="form-group">
-                        <input type="file" name="file" required="required">
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Import</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 @endsection
