@@ -59,18 +59,21 @@ class PenggajianController extends Controller
     }
 
     public function laporan(){
-        // $user = Jadwal::select(
-        //     // 'jadwals.nama as nama',
-        //     // 'jadwals.gaji as gaji_awal',
-        //     'rekap_absens.jumlah_tidak_hadir',
-        //     'rekap_absens.potongan_perhari',
-        //     'rekap_absens.jumlah_potongan',
-        //     DB::raw('jadwals.gaji - (rekap_absens.potongan_perhari * rekap_absens.jumlah_tidak_hadir) as gaji_net')
-        //     )
-        // // ->leftJoin('absens', 'absens.id_jadwals', '=', 'jadwals.id')
-        // // ->leftJoin('rekap_absens', 'rekap_absens.id_absen', '=', 'absens.id')
-        // ->get();
-        $user = Laporan::all();
+        $user = Penggajian::select(
+            'penggajians.id',
+            'rekap_absens.nama',
+            'rekap_absens.jumlah_tidak_hadir',
+            'rekap_absens.potongan_perhari',
+            'rekap_absens.jumlah_potongan',
+            'penggajians.jumlah_gaji',
+            DB::raw('penggajians.gaji_pokok')
+            )
+        ->leftJoin('rekap_absens', 'penggajians.id_rekap_absens', '=', 'rekap_absens.id')
+        // ->leftJoin('rekap_absens', 'rekap_absens.id_absen', '=', 'absens.id')
+        ->get();
+
+        // dd($user);
+        // $user = Laporan::all();
         return view('pages.laporan', compact('user'));
     }
 }
