@@ -19,7 +19,7 @@
                 </thead>
                 <tfoot>
                     <tr>
-                    <th>Nama</th>
+                        <th>Nama</th>
                         <th>Gaji Pokok</th>
                         <th>Potongan</th>
                         <th>Gaji Yang Diterima</th>
@@ -27,11 +27,14 @@
                     </tr>
                 </tfoot>
                 <tbody>
+                    <?php //dd($user);?>
                     @foreach($user as $key => $value)
                     <tr>
                         <td>{{$value->nama}}</td>
-                        <td>Rp {{!empty($value->gaji_net)?$value->gaji_net:0}}</td>
-                        <td>Karyawan</td>
+                        <td>Rp. {{!empty($value->gaji_pokok)?$value->gaji_pokok:0}}</td>
+                        <td>Rp. {{$value->jumlah_potongan}}</td>
+                        <td>Rp. {{$value->jumlah_gaji}}</td>
+                        <td>Jangan bolos mulu</td>
                     </tr>
                     @endforeach
                 </tbody>
