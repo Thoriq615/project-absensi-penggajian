@@ -512,7 +512,7 @@
                                 '<span class="text">Kirim</span>'+
                             '</a>'+
                             '<div class="dropdown-menu dropdown-menu-right  aria-labelledby="navbarDropdown">'+
-                                '<a id="email" class="dropdown-item" href="{{url('/sendEmail')}}">Email</a>'+
+                                `<a id="email" class="dropdown-item" href="{{url('/sendEmail/${route_url}')}}">Email</a>`+
                                 '<a id="whatsapp" class="dropdown-item" href="https://api.whatsapp.com/send?phone=6281288621821&text=Teks">Whatsapp</a>'+
                             '</div>'
                         );

@@ -59,7 +59,7 @@ Route::get('/laporan', 'PenggajianController@laporan');
 //     return view('pages.laporan');
 // });
 
-Route::get('/sendEmail', 'mailController@sendEmail');
+Route::get('/sendEmail/{route}', 'mailController@sendEmail');
 
 Route::get('/register', function(){
     return view('login.register');
