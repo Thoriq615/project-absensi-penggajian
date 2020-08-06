@@ -31,7 +31,7 @@ class MyEmail extends Mailable
     public function build()
     {
         return $this->from('testingemail072020@gmail.com')
-        ->subject('Mail from Febrian')
+        ->subject('Report Document')
         ->view('email.email');
     }
 }
