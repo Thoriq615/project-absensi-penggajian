@@ -11,14 +11,18 @@
                 <thead>
                     <tr>
                         <th>Nama</th>
-                        <th>Gaji</th>
+                        <th>Gaji Pokok</th>
+                        <th>Potongan</th>
+                        <th>Gaji Yang Diterima</th>
                         <th>Keterangan</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Nama</th>
-                        <th>Gaji</th>
+                    <th>Nama</th>
+                        <th>Gaji Pokok</th>
+                        <th>Potongan</th>
+                        <th>Gaji Yang Diterima</th>
                         <th>Keterangan</th>
                     </tr>
                 </tfoot>

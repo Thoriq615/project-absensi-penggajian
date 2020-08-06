@@ -73,20 +73,20 @@
 
                 @if(session()->get('nama') == 'kasiekbang' || session()->get('nama') == 'admin')
                 <!-- Menu jadwal -->
-                <li id="jadwal" class="nav-item">
+                <!-- <li id="jadwal" class="nav-item">
                     <a class="nav-link" href="{{ url('/jadwal') }}">
                         <i class="fas fa-fw fa-list"></i>
                         <span>Jadwal</span>
                     </a>
-                </li>
+                </li> -->
 
                 <!-- Menu Absen -->
-                <li id="absen" class="nav-item">
+                <!-- <li id="absen" class="nav-item">
                     <a class="nav-link" href="{{ url('/absen') }}">
                         <i class="fas fa-fw fa-user-check"></i>
                         <span>Absen</span>
                     </a>
-                </li>
+                </li> -->
 
                 <!-- Menu Rekap Absen -->
                 <li id="rekap_absen" class="nav-item">
@@ -424,6 +424,27 @@
                     modal.find('.modal-body #jumlah_potongan').val(jumlah_potongan);
                 })
         </script>
+
+                <script>
+                //Get data edit Penggajian
+                $("#edit-penggajian").on('show.bs.modal', function(event){
+                    var button = $(event.relatedTarget)
+                    var id = button.data('id')
+                    var nama = button.data('nama')
+                    var jumlah_tidak_hadir = button.data('jumlah_tidak_hadir')
+                    var potongan = button.data('potongan_perhari')
+                    var jumlah_potongan = button.data('jumlah_potongan')
+                    var jumlah_gaji = button.data('jumlah_gaji')
+
+                    var modal = $(this)
+                    modal.find('.modal-body #idPenggajian').val(id);
+                    modal.find('.modal-body #nama').val(nama);
+                    modal.find('.modal-body #jumlah_tidak_hadir').val(jumlah_tidak_hadir);
+                    modal.find('.modal-body #potongan_perhari').val(potongan);
+                    modal.find('.modal-body #jumlah_potongan').val(jumlah_potongan);
+                    modal.find('.modal-body #jumlah_gaji').val(jumlah_gaji);
+                })
+                </script>
 
         <script>
             //Get data edit jadwal

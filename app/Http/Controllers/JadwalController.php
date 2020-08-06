@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Jadwal;
+use App\RekapAbsen;
 use DB;
 
 class JadwalController extends Controller
@@ -21,6 +22,9 @@ class JadwalController extends Controller
             'jadwal'             => $request->jadwal,
             'Gaji'               => $request->gaji
         ]);
+        // $data2 = RekapAbsen::create([
+        //     'Gaji'               => $request->gaji
+        // ]);
         return redirect('/jadwal')->with('status', 'Data Berhasil Ditambahkan');
     }
 

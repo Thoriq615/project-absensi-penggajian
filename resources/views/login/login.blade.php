@@ -135,9 +135,9 @@
                     if(email == 'bendahara@gmail.com'){
                       window.location.href="{{url('/penggajian')}}";
                     }else if(email == 'kasiekbang@gmail.com'){
-                      window.location.href="{{url('/jadwal')}}";
+                      window.location.href="{{url('/rekap_absen')}}";
                     }else{
-                      window.location.href="{{url('/jadwal')}}";
+                      window.location.href="{{url('/rekap_absen')}}";
                     }
                 }
 

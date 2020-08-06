@@ -6,40 +6,71 @@ use Illuminate\Http\Request;
 use App\RekapAbsen;
 use App\Absen;
 use App\Jadwal;
+use App\Penggajian;
+use App\Laporan;
 use DB;
 
 class PenggajianController extends Controller
 {
     //
     public function index(){
-        $user = Jadwal::select(
-            'jadwals.nama as nama', 
-            'jadwals.gaji as gaji_awal',
+        $user = Penggajian::select(
+            'penggajians.id',
+            'rekap_absens.nama',
             'rekap_absens.jumlah_tidak_hadir',
             'rekap_absens.potongan_perhari',
             'rekap_absens.jumlah_potongan',
-            DB::raw('jadwals.gaji - (rekap_absens.potongan_perhari * rekap_absens.jumlah_tidak_hadir) as gaji_net')
+            'penggajians.jumlah_gaji',
+            DB::raw('penggajians.gaji_pokok')
             )
-        ->leftJoin('absens', 'absens.id_jadwals', '=', 'jadwals.id')
-        ->leftJoin('rekap_absens', 'rekap_absens.id_absen', '=', 'absens.id')
+        ->leftJoin('rekap_absens', 'penggajians.id_rekap_absens', '=', 'rekap_absens.id')
+        // ->leftJoin('rekap_absens', 'rekap_absens.id_absen', '=', 'absens.id')
         ->get();
         // dd($user);
 
         return view('pages.penggajian', compact('user'));
     }
+    public function edit($id)
+    {
+        $getData = Penggajian::FindOrFail($id);
+        return $getData;
+    }
+    public function update(Request $request)
+    {
+        // dd($request->all());
+        // $id_rekap_absen = RekapAbsen::select('nama')->where('id', '=', $request->nama)->first();
+        $rekap_absen_id = DB::table('rekap_absens')->where('nama', '=', $request->nama)->first();
+        // dd($rekap_absen_id);
+        // $rekap_absen_id = Penggajian::select('rekap_absens.nama')
+        //                         ->join('rekap_absens','penggajians.id_rekap_absens','=','rekap_absens.id')
+        //                         ->where('nama', $request->nama)
+        //                         ->first();
+
+        $data_update = DB::table('penggajians')
+        ->where('penggajians.id', $request->id)
+        ->update([
+            'id_rekap_absens'      => $rekap_absen_id->id,
+            'jumlah_tidak_hadir'   => $request->jumlah_tidak_hadir,
+            'potongan_perhari'     => $request->potongan_perhari,
+            'jumlah_potongan'      => $request->jumlah_potongan,
+            'jumlah_gaji'          => $request->jumlah_gaji
+        ]);
+        return redirect('/penggajian')->with('status', 'Data Berhasil Diubah');
+    }
 
     public function laporan(){
-        $user = Jadwal::select(
-            'jadwals.nama as nama', 
-            'jadwals.gaji as gaji_awal',
-            'rekap_absens.jumlah_tidak_hadir',
-            'rekap_absens.potongan_perhari',
-            'rekap_absens.jumlah_potongan',
-            DB::raw('jadwals.gaji - (rekap_absens.potongan_perhari * rekap_absens.jumlah_tidak_hadir) as gaji_net')
-            )
-        ->leftJoin('absens', 'absens.id_jadwals', '=', 'jadwals.id')
-        ->leftJoin('rekap_absens', 'rekap_absens.id_absen', '=', 'absens.id')
-        ->get();
+        // $user = Jadwal::select(
+        //     // 'jadwals.nama as nama',
+        //     // 'jadwals.gaji as gaji_awal',
+        //     'rekap_absens.jumlah_tidak_hadir',
+        //     'rekap_absens.potongan_perhari',
+        //     'rekap_absens.jumlah_potongan',
+        //     DB::raw('jadwals.gaji - (rekap_absens.potongan_perhari * rekap_absens.jumlah_tidak_hadir) as gaji_net')
+        //     )
+        // // ->leftJoin('absens', 'absens.id_jadwals', '=', 'jadwals.id')
+        // // ->leftJoin('rekap_absens', 'rekap_absens.id_absen', '=', 'absens.id')
+        // ->get();
+        $user = Laporan::all();
         return view('pages.laporan', compact('user'));
     }
 }

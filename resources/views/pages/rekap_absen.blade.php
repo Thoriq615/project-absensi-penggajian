@@ -1,9 +1,20 @@
 @extends('layouts.main')
 
 @section('content')
+<div class="page-title-actions">
+    <div class="d-inline-block dropdown" style="float: right">
+        <a href="#" class="btn btn-primary btn-icon-split btn-sm" data-toggle="modal" data-target=".data-absen-rekap">
+            <span class="icon text-white-50">
+            <i class="fas fa-pen"></i>
+            </span>
+            <span class="text">Create Rekap Absen</span>
+        </a>
+    </div>
+    <div class="clear" style="clear: both"></div>
+</div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Rekap Gaji</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Rekap Absen</h6>
     </div>
     @if (\Session::has('success'))
         <div class="alert alert-success alert-notif">
@@ -46,6 +57,54 @@
     </div>
 </div>
 
+<div class="modal fade data-absen-rekap" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Create Rekap Absen</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <form method="post" action="{{url('rekap_absen/create')}}">
+                {{ csrf_field() }}
+                <div class="form-group">
+                    <label for="nama">Nama</label>
+                    <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama">
+                 </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="jumlah_cuti">Jumlah Cuti</label>
+                    <input type="number" class="form-control" name="jumlah_cuti" id="jumlah_cuti" placeholder="Masukkan Jumlah Cuti">
+                </div>
+
+                <div class="form-group">
+                    <label for="jumlah_tidak_hadir">Jumlah Tidak Hadir</label>
+                    <input type="number" class="form-control" name="jumlah_tidak_hadir" id="jumlah_tidak_hadir" placeholder="Masukkan Jumlah Tidak Hadir">
+                </div>
+
+                <div class="form-group">
+                    <label for="potongan_perhari">Potongan Perhari</label>
+                    <input type="text" class="form-control" name="potongan_perhari" id="potongan_perhari" placeholder="Masukkan Potongan Perhari">
+                </div>
+
+                <div class="form-group">
+                    <label for="jumlah_potongan">Jumlah Potongan</label>
+                    <input type="text" class="form-control" name="jumlah_potongan" id="jumlah_potongan" placeholder="Masukkan Jumlah Potongan">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button  class="btn btn-primary" type="submit">Save changes</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
  <!-- Modal Edit RekapAbsen -->
 <div class="modal fade edit-rekap-absen" id="edit-rekap-absen" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -83,7 +142,7 @@
 
                 <div class="form-group">
                     <label for="password">Jumlah Potongan</label>
-                    <input type="amount" class="form-control" name="jumlah_potongan" id="jumlah_potongan" placeholder="Masukkan Jumlah Potongan" readonly>
+                    <input type="amount" class="form-control" name="jumlah_potongan" id="jumlah_potongan" placeholder="Masukkan Jumlah Potongan">
                 </div>
 
             </div>

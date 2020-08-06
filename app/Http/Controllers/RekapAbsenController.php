@@ -5,26 +5,46 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\RekapAbsen;
 use App\Absen;
+use App\Penggajian;
 use DB;
 
 class RekapAbsenController extends Controller
 {
     public function index()
     {
-        $data = Absen::select(
-            'absens.id',
-            'absens.id_jadwals',
-            'absens.jumlah_tidak_hadir',
-            'rekap_absens.jumlah_cuti',
-            'jadwals.nama',
-            'rekap_absens.potongan_perhari',
-            'rekap_absens.jumlah_potongan'
-        )
-        ->leftjoin('rekap_absens', 'absens.id', '=', 'rekap_absens.id_absen')
-        ->leftjoin('jadwals', 'absens.id_jadwals', '=', 'jadwals.id')
-        ->get();
+        // $data = Absen::select(
+        //     'absens.id',
+        //     'absens.id_jadwals',
+        //     'absens.jumlah_tidak_hadir',
+        //     'rekap_absens.jumlah_cuti',
+        //     'jadwals.nama',
+        //     'rekap_absens.potongan_perhari',
+        //     'rekap_absens.jumlah_potongan'
+        // )
+        // ->leftjoin('rekap_absens', 'absens.id', '=', 'rekap_absens.id_absen')
+        // ->leftjoin('jadwals', 'absens.id_jadwals', '=', 'jadwals.id')
+        // ->get();
+        $data = RekapAbsen::all();
 
         return view('pages.rekap_absen', compact('data'));
+    }
+
+    public function create(Request $request)
+    {
+        $data = RekapAbsen::create([
+            'nama' => $request->nama,
+            'jumlah_cuti' => $request->jumlah_cuti,
+            'jumlah_tidak_hadir' => $request->jumlah_tidak_hadir,
+            'potongan_perhari' => $request->potongan_perhari,
+            'jumlah_potongan' => $request->jumlah_potongan
+        ]);
+        $data_penggajian = Penggajian::create([
+            'id_rekap_absens' => $data->id,
+            'jumlah_tidak_hadir' => $data->jumlah_tidak_hadir,
+            'potongan_perhari' => $data->potongan_perhari,
+            'jumlah_potongan' => $request->jumlah_potongan
+        ]);
+        return redirect('/rekap_absen')->with('status', 'Data Berhasil Ditambahkan');
     }
 
     public function edit($id)
