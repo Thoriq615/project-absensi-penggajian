@@ -34,7 +34,7 @@
                         <td>Rp. {{!empty($value->gaji_pokok)?$value->gaji_pokok:0}}</td>
                         <td>Rp. {{$value->jumlah_potongan}}</td>
                         <td>Rp. {{$value->jumlah_gaji}}</td>
-                        <td>Jangan bolos mulu</td>
+                        <td>Laporan Gaji Bulan ini</td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -44,7 +44,7 @@ class mailController extends Controller
 
         // dd($details);
 
-        Mail::to('thoriqkamal18@gmail.com')->send(new MyEmail($details));
+        Mail::to('puspitomelly@gmail.com')->send(new MyEmail($details));
         // Mail::to('thoriqkamal18@gmail.com')->send(new MyEmail($details));
         return redirect()->back()->with('success', 'Email Berhasil Dikirim !!');
 
